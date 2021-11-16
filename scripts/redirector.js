@@ -6,7 +6,7 @@ function yt_redirector(requestDetails)
     return {};
   }
   return {
-    redirectUrl: u.origin + "/embed/" + v
+    redirectUrl: "https://www.youtube-nocookie.com/embed/" + v
   };
 }
 
