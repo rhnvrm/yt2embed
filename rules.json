@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://www.youtube-nocookie.com/embed/\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": ".*youtube\\.com/watch\\?v=([^&]+).*",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://www.youtube-nocookie.com/embed/\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": ".*youtube\\.com/shorts/([^&]+).*",
+            "resourceTypes": [
+                "main_frame"
+            ]
+        }
+    }
+]

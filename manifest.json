@@ -1,24 +1,32 @@
 {
-  "manifest_version": 2,
-  "version": "0.0.2",
+  "manifest_version": 3,
+  "version": "0.1.0",
   "name": "Redirect Youtube Video to Embed Page",
   "description": "Automatically redirects video pages to their embed equivalent.",
   "short_name": "yt2embed",
   "author": "Rohan Verma",
-  "homepage_url": "https://rohanverma.net/",
+  "homepage_url": "https://github.com/rhnvrm/yt2embed",
   "icons": {
     "48": "assets/icon_48.png",
     "256": "assets/icon_256.png"
   },
-  "permissions": [
-    "https://youtube.com/watch*",
-    "https://www.youtube.com/watch*",
-    "webRequest",
-    "webRequestBlocking"
+  "host_permissions": [
+    "*://youtube.com/watch*",
+    "*://www.youtube.com/watch*",
+    "*://youtube.com/shorts*",
+    "*://www.youtube.com/shorts*"
   ],
-  "background": {
-    "scripts": [
-      "scripts/redirector.js"
-    ]
+  "permissions": [
+    "declarativeNetRequest"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "yt2embed_rules",
+        "name": "yt2embed_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]    
   }
 }
