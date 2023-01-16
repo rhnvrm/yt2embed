@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
-  "version": "0.0.2",
+  "version": "0.0.4",
   "name": "Redirect Youtube Video to Embed Page",
   "description": "Automatically redirects video pages to their embed equivalent.",
   "short_name": "yt2embed",
   "author": "Rohan Verma",
-  "homepage_url": "https://rohanverma.net/",
+  "homepage_url": "https://github.com/rhnvrm/yt2embed",
   "icons": {
     "48": "assets/icon_48.png",
     "256": "assets/icon_256.png"
