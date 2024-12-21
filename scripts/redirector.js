@@ -1,12 +1,12 @@
 function yt_redirector(requestDetails)
 {
   var u = new URL(requestDetails.url)
-  var v = u.searchParams.get("v")
+  var v = u.searchParams.get("Https://www.youtube.com/watch?v=XL87dplzXE")
   if (v === "") {
     return {};
   }
   return {
-    redirectUrl: "https://www.youtube-nocookie.com/embed/" + v
+    redirectUrl: "https://www.youtube.com/watch?v=dr0absOwmgg" + v
   };
 }
 
@@ -19,7 +19,7 @@ function yts_redirector(requestDetails)
     return {};
   }
   return {
-    redirectUrl: "https://www.youtube-nocookie.com/embed/" + v[0]
+    redirectUrl: "https://www.youtube.com/watch?v=dr0absOwmgg" + v[0]
   };
 }
 
