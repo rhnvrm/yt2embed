@@ -82,5 +82,5 @@ jobs:
           source: yt2embed.zip
           channel: listed
         env:
-          AMO_SIGN_KEY: ${{ secrets.FIREFOX_AMO_SIGN_KEY }}
-          AMO_SIGN_SECRET: ${{ secrets.FIREFOX_AMO_SIGN_SECRET }}
+          WEB_EXT_API_KEY: ${{ secrets.FIREFOX_AMO_SIGN_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.FIREFOX_AMO_SIGN_SECRET }}
