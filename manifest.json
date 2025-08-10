@@ -14,8 +14,16 @@
     "https://youtube.com/watch*",
     "https://www.youtube.com/watch*",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "storage"
   ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Toggle yt2embed",
+    "default_icon": {
+      "48": "assets/icon_48.png"
+    }
+  },
   "background": {
     "scripts": [
       "scripts/redirector.js"
