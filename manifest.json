@@ -11,19 +11,26 @@
     "256": "assets/icon_256.png"
   },
   "host_permissions": [
-    "*://youtube.com/watch*",
-    "*://www.youtube.com/watch*",
-    "*://youtube.com/shorts*",
-    "*://www.youtube.com/shorts*"
+    "https://youtube.com/watch*",
+    "https://www.youtube.com/watch*",
+    "https://youtube.com/shorts*",
+    "https://www.youtube.com/shorts*"
   ],
   "permissions": [
-    "declarativeNetRequest"
+    "declarativeNetRequest",
+    "storage"
   ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Toggle yt2embed",
+    "default_icon": {
+      "48": "assets/icon_48.png"
+    }
+  },
   "declarative_net_request": {
     "rule_resources": [
       {
         "id": "yt2embed_rules",
-        "name": "yt2embed_rules",
         "enabled": true,
         "path": "rules.json"
       }
