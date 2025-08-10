@@ -31,7 +31,7 @@
     "rule_resources": [
       {
         "id": "yt2embed_rules",
-        "enabled": true,
+        "enabled": false,
         "path": "rules.json"
       }
     ]    
