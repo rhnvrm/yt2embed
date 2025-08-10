@@ -4,10 +4,23 @@
 
 Redirect Youtube Videos to the Embed Page
 
-Updated in 2023 to support the new Manifest v3 API.
+A browser extension that automatically redirects YouTube video and shorts pages to their embed equivalent, providing a cleaner viewing experience without distractions.
 
-Since v3 is not yet supported on firefox, the v2 version is still 
-maintained. For checking out the code for the v2 version, see the master branch.
+## Features
+
+✅ **Auto-redirect** YouTube videos and shorts to embed pages  
+✅ **Enable/Disable toggle** - Quick on/off switch via extension popup  
+✅ **Cross-browser support** - Works on Chrome, Firefox, and other Chromium-based browsers  
+✅ **Manifest V3** - Modern extension architecture with declarativeNetRequest API  
+✅ **Persistent settings** - Your preference is remembered across browser sessions
+
+## How it Works
+
+The extension uses Manifest V3's `declarativeNetRequest` API to redirect:
+- `youtube.com/watch?v=VIDEO_ID` → `youtube-nocookie.com/embed/VIDEO_ID`
+- `youtube.com/shorts/VIDEO_ID` → `youtube-nocookie.com/embed/VIDEO_ID`
+
+Click the extension icon to toggle the redirection on/off instantly.
 
 ---
 
