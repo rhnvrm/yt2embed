@@ -48,7 +48,7 @@ jobs:
 
   upload-firefox:
     runs-on: ubuntu-latest
-    if: vars.ENABLE_FIREFOX_UPLOAD == 'true'
+    if: false  # Disabled until API credentials are tested locally
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -80,7 +80,7 @@ jobs:
         with:
           cmd: sign
           source: yt2embed.zip
-          channel: listed
+          channel: unlisted
         env:
           WEB_EXT_API_KEY: ${{ secrets.FIREFOX_AMO_SIGN_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.FIREFOX_AMO_SIGN_SECRET }}
