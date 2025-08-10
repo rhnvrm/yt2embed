@@ -1,0 +1,83 @@
+name: Upload to Browser Stores
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to upload (e.g., 1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  upload-chrome:
+    runs-on: ubuntu-latest
+    if: vars.CHROME_EXTENSION_ID != '' && vars.ENABLE_CHROME_UPLOAD == 'true'
+    # NOTE: Chrome upload disabled by default - set ENABLE_CHROME_UPLOAD=true when ready
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update manifest version
+        run: |
+          sed -i 's/"version": ".*"/"version": "${{ steps.version.outputs.version }}"/' manifest.json
+
+      - name: Build Chrome extension
+        run: make chrome
+
+      - name: Upload to Chrome Web Store
+        uses: mnao305/chrome-extension-upload@v5.0.0
+        with:
+          file-path: yt2embed.zip
+          extension-id: ${{ vars.CHROME_EXTENSION_ID }}
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          publish: true
+
+  upload-firefox:
+    runs-on: ubuntu-latest
+    if: vars.ENABLE_FIREFOX_UPLOAD == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update manifest version
+        run: |
+          sed -i 's/"version": ".*"/"version": "${{ steps.version.outputs.version }}"/' manifest.json
+
+      - name: Lint Firefox extension
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: lint
+          source: ./
+
+      - name: Sign Firefox extension
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: sign
+          source: ./
+          channel: listed
+        env:
+          AMO_SIGN_KEY: ${{ secrets.FIREFOX_AMO_SIGN_KEY }}
+          AMO_SIGN_SECRET: ${{ secrets.FIREFOX_AMO_SIGN_SECRET }}
