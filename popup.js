@@ -1,8 +1,9 @@
+// Constants
+const STORAGE_KEY = 'enabled';
+const FALLBACK_STORAGE_KEY = 'yt2embed_enabled';
+const DEFAULT_ENABLED = true;
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Constants
-  const STORAGE_KEY = 'enabled';
-  const FALLBACK_STORAGE_KEY = 'yt2embed_enabled';
-  const DEFAULT_ENABLED = true;
   
   const toggle = document.getElementById('toggle');
   const status = document.getElementById('status');
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }).catch(error => {
     console.error('Error loading state:', error);
     status.textContent = 'Load error';
-    updateUI(true); // fallback to enabled
+    updateUI(DEFAULT_ENABLED); // fallback to default state for existing users
   });
   
   // Handle toggle click
