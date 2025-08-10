@@ -26,5 +26,10 @@
     "default_icon": {
       "48": "assets/icon_48.png"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "yt2embed@rohanverma.net"
+    }
   }
 }
