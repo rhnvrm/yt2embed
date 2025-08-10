@@ -72,11 +72,14 @@ jobs:
           cmd: lint
           source: ./
 
-      - name: Sign Firefox extension
+      - name: Build Firefox extension
+        run: make firefox
+
+      - name: Sign and submit Firefox extension
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ./
+          source: yt2embed.zip
           channel: listed
         env:
           AMO_SIGN_KEY: ${{ secrets.FIREFOX_AMO_SIGN_KEY }}
