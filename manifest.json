@@ -26,14 +26,5 @@
     "default_icon": {
       "48": "assets/icon_48.png"
     }
-  },
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "yt2embed_rules",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]    
   }
 }
