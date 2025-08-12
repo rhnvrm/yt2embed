@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Update manifest version
+        run: |
+          sed -i 's/"version": ".*"/"version": "${{ steps.version.outputs.version }}"/' manifest.json
+
+      - name: Build Chrome extension
+        run: make chrome
+        
+      - name: Rename Chrome artifact
+        run: mv yt2embed.zip yt2embed-chrome-v${{ steps.version.outputs.version }}.zip
+
+      - name: Build Firefox extension
+        run: make firefox
+        
+      - name: Rename Firefox artifact
+        run: mv yt2embed.zip yt2embed-firefox-v${{ steps.version.outputs.version }}.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            yt2embed-chrome-v${{ steps.version.outputs.version }}.zip
+            yt2embed-firefox-v${{ steps.version.outputs.version }}.zip
+          body: |
+            ## Changes in v${{ steps.version.outputs.version }}
+            
+            ### Chrome Extension
+            - Download: yt2embed-chrome-v${{ steps.version.outputs.version }}.zip
+            
+            ### Firefox Extension  
+            - Download: yt2embed-firefox-v${{ steps.version.outputs.version }}.zip
+            
+            ---
+            
+            Install the appropriate extension file for your browser.
+          draft: false
+          prerelease: false

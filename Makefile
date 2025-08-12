@@ -1,7 +1,10 @@
 clean:
 	rm -rf yt2embed.zip
 
-firefox: clean
-	zip -r yt2embed assets LICENSE manifest.json rules.json README.md scripts
+chrome: clean
+	zip -r yt2embed assets LICENSE manifest.json README.md popup.html popup.js
 
-.PHONY: clean firefox
+firefox: clean
+	zip -r yt2embed assets LICENSE manifest.json README.md popup.html popup.js
+
+.PHONY: clean chrome firefox
