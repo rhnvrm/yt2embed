@@ -3,10 +3,38 @@
 <head>
   <meta charset="utf-8">
   <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --text-secondary: #666666;
+      --border-color: #cccccc;
+      --toggle-bg: #cccccc;
+      --toggle-enabled: #4CAF50;
+      --tooltip-bg: #333333;
+      --tooltip-text: #ffffff;
+      --info-icon-border: #999999;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #1e1e1e;
+        --text-color: #ffffff;
+        --text-secondary: #cccccc;
+        --border-color: #555555;
+        --toggle-bg: #555555;
+        --toggle-enabled: #4CAF50;
+        --tooltip-bg: #444444;
+        --tooltip-text: #ffffff;
+        --info-icon-border: #cccccc;
+      }
+    }
+
     body {
       width: 250px;
       padding: 20px;
       font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
     }
     
     .toggle-container {
@@ -20,14 +48,14 @@
       position: relative;
       width: 50px;
       height: 25px;
-      background-color: #ccc;
+      background-color: var(--toggle-bg);
       border-radius: 25px;
       cursor: pointer;
       transition: background-color 0.3s, opacity 0.3s;
     }
     
     .toggle.enabled {
-      background-color: #4CAF50;
+      background-color: var(--toggle-enabled);
     }
     
     .toggle.disabled {
@@ -53,7 +81,7 @@
     
     .status {
       font-size: 12px;
-      color: #666;
+      color: var(--text-secondary);
       text-align: center;
       transition: opacity 0.3s;
     }
@@ -65,10 +93,10 @@
     .info-icon {
       margin-left: 3px;
       cursor: help;
-      color: #999;
+      color: var(--info-icon-border);
       font-size: 10px;
       font-weight: bold;
-      border: 1px solid #999;
+      border: 1px solid var(--info-icon-border);
       border-radius: 50%;
       width: 12px;
       height: 12px;
@@ -81,8 +109,8 @@
     
     .tooltip {
       visibility: hidden;
-      background-color: #333;
-      color: white;
+      background-color: var(--tooltip-bg);
+      color: var(--tooltip-text);
       text-align: center;
       padding: 8px;
       border-radius: 4px;
@@ -106,7 +134,7 @@
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
-      border-color: #333 transparent transparent transparent;
+      border-color: var(--tooltip-bg) transparent transparent transparent;
     }
     
     .info-icon:hover .tooltip {
