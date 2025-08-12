@@ -17,7 +17,7 @@
     "https://www.youtube.com/shorts*"
   ],
   "permissions": [
-    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
     "storage"
   ],
   "action": {
